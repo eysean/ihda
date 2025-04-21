@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p131639-e1282833.adobeaemcloud.com/bin/franklin.delivery/AdobeDevXSC/ensemble-xwalk/main"
+    url: "author-p7906-e91530.adobeaemcloud.com/bin/franklin.delivery/eysean/ihda/main"
     type: "markup"
     suffix: ".html"
