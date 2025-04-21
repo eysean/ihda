@@ -1,19 +1,10 @@
 {
   "mappings": [
-    "/content/ensemble-xwalk/:/",
-    "/content/ensemble-xwalk/configuration:/.helix/config.json",
-    "/content/ensemble-xwalk/metadata:/metadata.json",
-    "/content/ensemble-xwalk/cards/portfolio:/cards/portfolio.json",
-    "/content/ensemble-xwalk/cards/teams:/cards/teams.json",
-    "/content/ensemble-xwalk/carousel/customers:/carousel/customers.json",
-    "/content/dam/ensemble-xwalk/customers/:/customers/",
-    "/content/dam/ensemble-xwalk/portfolio/:/portfolio/",
-    "/content/dam/ensemble-xwalk/teams/:/teams/"
+    "/content/ihda/:/",
+    "/content/ihda/configuration:/.helix/config.json",
+    "/content/ihda/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/ensemble-xwalk/",
-    "/content/dam/ensemble-xwalk/customers",
-    "/content/dam/ensemble-xwalk/portfolio",
-    "/content/dam/ensemble-xwalk/teams"
+    "/content/ihda/"
   ]
 }
