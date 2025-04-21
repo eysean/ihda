@@ -1,0 +1,192 @@
+/* Boilerplate default cards styling */ 
+.cards > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-gap: 32px;
+	grid-template-columns: repeat(auto-fill, minmax(calc((100% - (4 * 32px)) / 5), 1fr));
+  }
+  
+  @media (max-width: 1024px) {
+	.cards > ul {
+	  grid-template-columns: repeat(auto-fill, minmax(calc((100% - (2 * 32px)) / 3), 1fr));
+	}
+  }
+  
+  @media (max-width: 768px) {
+	.cards > ul {
+	  grid-template-columns: repeat(auto-fill, minmax(calc((100% - 32px) / 2), 1fr));
+	}
+  }
+  
+  @media (max-width: 480px) {
+	.cards > ul {
+	  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+	}
+  }
+  
+  .cards > ul > li a:hover {
+	text-decoration: none;
+  }
+  
+  .cards .cards-card-body {
+	margin: 8px 16px;
+  }
+  
+  .cards .cards-card-image {
+	line-height: 0;
+	overflow: hidden;
+	border-radius: 5px;
+  }
+  
+  .cards .cards-card-body p {
+	margin: 0;
+	font-size: 18px;
+	line-height: 1.75rem;
+	font-weight: 500;
+	text-align: center;
+	color: var(--color-black);
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: -0.9px;
+  }
+  
+  .cards > ul > li  {
+	overflow: hidden;
+  }
+  
+  .cards > ul > li img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+	overflow: hidden;  
+  }
+  
+  .cards > ul > li a:hover img {
+	transform: scale(1.05);
+	transition: transform 0.3s ease-out;
+  }
+  
+  .section.cards-container h4 {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 700;
+  }
+  
+  .section.cards-container .default-content-wrapper .button-container {
+	text-align: center;
+  }
+  
+  .section.cards-container .default-content-wrapper .button-container a {
+	text-transform: uppercase;
+	padding: 1rem 1.5rem;
+	font-size: 14px;
+	font-weight: 700;
+	border: 1px solid #000;
+	border-radius: 5px;
+	background-color: transparent;
+	color: #000;
+	margin-top: 2rem;
+	margin-bottom: 0;
+	display: block;
+  }
+  
+  .section.cards-container .default-content-wrapper .button-container a[title="Join Us"]{
+	margin-top: 0;
+  }
+  
+  .section.cards-container .default-content-wrapper .button-container a:hover {
+	color: var(--color-white);
+	border: 1px solid transparent;
+	background-color: rgba(255, 142, 47, 1);
+	transition-duration: .3s;
+  }
+
+    /* Cards - Services */
+	.section.services-section.cards-container .cards {
+		display: flex;
+		flex-direction: column;
+	  }
+
+	  .section.services-section.cards-container .default-content-wrapper .button-container {
+		text-align: center;
+		display: flex;
+		justify-content: flex-start;
+	  }
+
+	  .section.services-section .default-content-wrapper h4 {
+		text-align: left;
+		
+	  }
+	  
+	  .section.services-section.cards-container .cards .card-container {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+		gap: 20px;
+		margin-top: 3rem;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card-container > a:hover {
+		text-decoration: none;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card {
+		padding: 20px;
+		border-radius: 5px;
+		background-color: var(--color-white);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		text-align: center;
+		color: var(--color-black);
+	  }
+	  
+	  .section.services-section.cards-container .cards .card:hover {
+		cursor: pointer;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card:hover > * {
+		transform: scale(1.05);
+		transition: transform 0.2s ease-in-out;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card img {
+		height: 64px;
+		width: auto;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card p {
+		margin: 0;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card p:first-of-type {
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card p:nth-of-type(2) {
+		font-size: 12px;
+		font-weight: 400;
+		color: rgba(0, 82, 115, 1);
+		line-height: normal;
+	  }
+	  
+	  .section.services-section.cards-container .cards .card p:nth-of-type(3) {
+		font-size: 14px;
+		font-weight: 100;
+		line-height: 1.25rem;
+		padding-top: 7px;
+	  }
+	  
+	  @media (min-width: 1300px) {
+		.section.services-section.cards-container .cards {
+		  flex-direction: row;
+		}
+		
+		.section.services-section.cards-container .cards .card-container {
+		  margin-top: 0;
+		}
+	  }
+	  /* End of Cards - Services */
