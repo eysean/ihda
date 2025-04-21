@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/idha/:/",
-    "/content/idha/configuration:/.helix/config.json",
-    "/content/idha/metadata:/metadata.json"
+    "/content/ihda/:/",
+    "/content/ihda/configuration:/.helix/config.json",
+    "/content/ihda/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/idha/"
+    "/content/ihda/"
   ]
 }
