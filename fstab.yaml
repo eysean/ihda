@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p7906-e91530.adobeaemcloud.com/bin/franklin.delivery/eysean/idha/main"
+    url: "https://author-p7906-e91558.adobeaemcloud.com/bin/franklin.delivery/eysean/ihda/main"
     type: "markup"
     suffix: ".html"
