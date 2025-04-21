@@ -1,0 +1,14 @@
+.quote{
+        width: 100%;
+        border: none;
+        border-radius: 0px 0px 0px 0px;
+        padding: 25px 75px 25px 75px;
+        background-color: #3e9abe;
+        z-index: 1;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        font: inherit;
+        vertical-align: baseline;
+        box-sizing: border-box;
+}
