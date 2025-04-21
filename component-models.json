@@ -1,5 +1,29 @@
 [
   {
+    "id": "page-metadata",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:description",
+        "label": "Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "keywords",
+        "multi": true,
+        "label": "Keywords"
+      }
+    ]
+  },
+  {
     "id": "image",
     "fields": [
       {
@@ -99,6 +123,12 @@
     "id": "section",
     "fields": [
       {
+        "component": "text",
+        "name": "name",
+        "label": "Section Name",
+        "description": "The label shown for this section in the Content Tree"
+      },
+      {
         "component": "multiselect",
         "name": "style",
         "label": "Style",
@@ -106,14 +136,6 @@
           {
             "name": "Highlight",
             "value": "highlight"
-          },
-          {
-            "name": "Contact",
-            "value": "contact"
-          },
-          {
-            "name": "Services Section",
-            "value": "services-section"
           }
         ]
       }
@@ -135,46 +157,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "carousel",
-    "fields": [
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "link",
-        "label": "Service",
-        "value": "",
-        "options": [
-          {
-            "name": "Customers",
-            "value": "https://main--ensemble-xwalk--adobedevxsc.aem.page/carousel/customers.json"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "cards-json",
-    "fields": [
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "link",
-        "label": "Service",
-        "value": "",
-        "options": [
-          {
-            "name": "Portfolio",
-            "value": "https://main--ensemble-xwalk--adobedevxsc.aem.page/cards/portfolio.json"
-          },
-          {
-            "name": "Teams",
-            "value": "https://main--ensemble-xwalk--adobedevxsc.aem.page/cards/teams.json"
-          }
-        ]
       }
     ]
   },

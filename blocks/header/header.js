@@ -103,18 +103,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-// Function to change background color to blue
-function changeBackgroundColor() {
-  const navWrapper = document.querySelector('header .nav-wrapper');
-  navWrapper.classList.add('show-bg');
-}
-
-// Function to reset background color to original
-function resetBackgroundColor() {
-  const navWrapper = document.querySelector('header .nav-wrapper');
-  navWrapper.classList.remove('show-bg');
-}
-
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -175,29 +163,4 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
-
-  // Update brand logo title attribute
-  const navBrandSection = block.querySelector('.section.nav-brand');
-  const iconName = navBrandSection.querySelector('img');
-  const link = navBrandSection.querySelector('a');
-  if (iconName && link) {
-    const iconNameValue = iconName.getAttribute('data-icon-name');
-    link.setAttribute('title', iconNameValue);
-  }
 }
-
-// Variable to track previous scroll position
-let previousScroll = window.scrollY || document.documentElement.scrollTop;
-
-// Event listener for scroll event
-window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-  if (currentScroll > 200 && currentScroll > previousScroll) {
-    changeBackgroundColor();
-  } else if (currentScroll <= 200 && currentScroll < previousScroll) {
-    resetBackgroundColor();
-  }
-
-  previousScroll = currentScroll;
-});

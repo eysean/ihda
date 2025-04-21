@@ -16,15 +16,5 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  // Set background image
-  const footerWrapper = document.querySelector('footer');
-  const firstSection = footer.querySelectorAll('.section')[0];
-  const imageSource = firstSection.querySelector('source[type="image/png"]');
-  const srcset = imageSource.getAttribute('srcset');
-
-  footerWrapper.style.backgroundImage = `url(${srcset})`;
-  const imageWrapper = firstSection.querySelector('p');
-  imageWrapper.remove();
-
   block.append(footer);
 }

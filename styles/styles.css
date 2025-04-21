@@ -12,19 +12,16 @@
 
 :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
   --background-color: white;
-  --light-color: #eee;
-  --dark-color: #ccc;
-  --text-color: black;
-
-  --color-white: #fff;
-  --color-black: #000;
+  --light-color: #f8f8f8;
+  --dark-color: #505050;
+  --text-color: #131313;
+  --link-color: #3b63fb;
+  --link-hover-color: #1d3ecf;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -41,7 +38,6 @@
 
   /* nav height */
   --nav-height: 64px;
-  --max-width: 1400px;
 }
 
 /* fallback fonts */
@@ -88,9 +84,9 @@ body.appear {
   display: block;
 }
 
-/* header {
+header {
   height: var(--nav-height);
-} */
+}
 
 header .header,
 footer .footer {
@@ -146,9 +142,9 @@ pre {
   white-space: pre;
 }
 
-/* main > div {
+main > div {
   margin: 40px 16px;
-} */
+}
 
 input,
 textarea,
@@ -161,7 +157,7 @@ button {
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 a:hover {
@@ -171,34 +167,34 @@ a:hover {
 
 /* buttons */
 a.button:any-link,
-button,
-.services-section .default-content-wrapper a {
-	display: inline-block;
-	text-transform: uppercase;
-	padding: 1rem 1.5rem;
-	font-size: 14px;
-	font-weight: 700;
-	border: 1px solid #000;
-	border-radius: 5px;
-	background-color: transparent;
-	color: #000;
-	margin-top: 1.5rem;
-	margin-bottom: 0;
-	font-style: normal;
-	text-align: center;
+button {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  margin: 12px 0;
+  border: 2px solid transparent;
+  border-radius: 2.4em;
+  padding: 0.5em 1.2em;
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--link-color);
+  color: var(--background-color);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
-button:focus,
-.services-section .default-content-wrapper a:hover,
-.services-section .default-content-wrapper a:focus {
-	color: var(--color-white);
-	border: 1px solid transparent;
-	background-color: rgba(255, 142, 47, 1);
-	transition-duration: .3s;
-	text-decoration: none;
+button:focus {
+  background-color: var(--link-hover-color);
+  cursor: pointer;
 }
 
 button:disabled,
@@ -233,29 +229,22 @@ main img {
 
 /* sections */
 main > .section {
-	padding: 48px 16px;
+  margin: 40px 0;
 }
 
-/* main > .section > div {
+main > .section > div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
-} */
+}
 
 main > .section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 600px) {
-	main .section {
-	  padding: 48px 32px;
-	}
-}
-
 @media (width >= 900px) {
   main > .section > div {
-    max-width: var(--max-width);
-    margin: auto;
+    padding: 0 32px;
   }
 }
 
@@ -264,93 +253,5 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
-  /* padding: 40px 0; */
+  padding: 40px 0;
 }
-
-main .section.contact {
-	padding: 2rem 32px;
-	text-align: center;
-  }
-  
-  @media (width >= 900px) {
-	main .section.contact {
-	  padding: 6rem 32px;
-	  text-align: center;
-	}
-  }
-  
-  main .section.contact h4 {
-	font-size: 24px;
-	font-weight: 700;
-  }
-  
-  main .section.contact .button-container {
-	margin-top: 2.5rem;
-  }
-  
-  main .section.contact .button-container a {
-	text-transform: uppercase;
-	font-size: 14px;
-	font-weight: 700;
-	border-radius: 5px;
-	padding: 0.75rem 1rem; 
-	color: var(--color-black);
-	width: fit-content;
-	background-color: rgba(255, 142, 47, 1);
-	border: 1px solid transparent;
-  }
-  
-  main .section.contact .button-container a:hover {
-	text-decoration: none;
-	border: 1px solid #000;
-	background-color: transparent;
-	color: var(--color-white);
-	transition-duration: 0.3s;
-	color: var(--color-black);
-  }
-  
-  /* section services */
-  .services-section {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	background-image: linear-gradient(rgb(239, 243, 244), rgba(239, 243, 244, 0));
-	background-color: transparent;
-  }
-  
-  .services-section > div {
-	width: 100%;
-	margin: 0;
-	padding: 0 1rem;
-	box-sizing: border-box;
-  }
-  
-  .services-section .default-content-wrapper h4 {
-	font-size: 26px !important;
-	font-weight: 700;
-	line-height: 1.75rem;
-	width: 90%;
-	position: sticky;
-	top: 80px;
-	padding-top: 1.5rem;
-	margin: 0;
-  }
-  
-  @media (min-width: 1300px) {
-	.services-section {
-	  flex-direction: row;
-	}
-  
-	.services-section > div {
-	  width: 50%;
-	  max-width: calc(var(--max-width) / 2);
-	  margin-top: 0;
-	}
-  }
-  
-  @media (max-width: 768px) {
-	.services-section .default-content-wrapper h4 {
-	  width: 100%;
-	  font-size: 18px !important;
-	}
-  }

@@ -14,8 +14,6 @@
       "title",
       "hero",
       "cards",
-      "cards-json",
-      "carousel",
       "columns",
       "fragment"
     ]
@@ -35,9 +33,10 @@
   {
     "id": "column",
     "components": [
+      "text",
       "image",
       "button",
-      "text"
+      "title"
     ]
   }
 ]
