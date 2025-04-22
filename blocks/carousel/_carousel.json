@@ -56,7 +56,7 @@
             "value": "",
             "label": "Title",
             "valueType": "string"
-          }
+          },
           {
             "component": "richtext",
             "name": "content_text_more",

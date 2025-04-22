@@ -181,7 +181,14 @@
         "component": "richtext",
         "name": "content_text",
         "value": "",
-        "label": "Text",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content_text_more",
+        "value": "",
+        "label": "Description",
         "valueType": "string"
       }
     ]
