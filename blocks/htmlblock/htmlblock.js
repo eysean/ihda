@@ -1,4 +1,5 @@
 export default async function decorate(block) {
-  const htmlblock = document.createElement('htmlblock');
-  block.append(htmlblock);
+  const [htmlblockvar] = [...block.children].map((c) => c.firstElementChild);
+  const innerString = htmlblockvar.firstChild;
+  block.innerHTML = innerString.textContent;
 }
