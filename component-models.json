@@ -161,6 +161,32 @@
     ]
   },
   {
+    "id": "carousel-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "media_image",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "media_imageAlt",
+        "value": "",
+        "label": "Bacgkround Alt"
+      },
+      {
+        "component": "richtext",
+        "name": "content_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
@@ -212,6 +238,18 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "htmlblock",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "htmltext",
+        "value": "",
+        "label": "Html"
       }
     ]
   },
