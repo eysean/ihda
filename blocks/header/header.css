@@ -33,3 +33,61 @@
       margin-left: 1rem;
       font-size: 1rem;
     }
+
+        /* Container for header */
+        #header-main {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #0069aa !important;
+          padding: 1rem 2rem;
+          height: 100px;
+        }
+    
+        /* Navigation links */
+        .nav-links {
+          list-style: none;
+          display: flex;
+        }
+    
+        .nav-links li + li {
+          margin-left: 1.5rem;
+        }
+    
+        .nav-links a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          font-size: 1rem;
+          transition: color 0.2s ease;
+        }
+    
+        .nav-links a:hover {
+          color: #007acc;
+        }
+    
+        /* Logo styling */
+        .logo img {
+          display: block;
+          height: 100%;
+        }
+
+        .orange {
+          color: #EF882B !important;
+        }
+
+        .white {
+          color:white !important;
+        }
+
+        .teal {
+          color: #30BFB2 !important;
+        }
+
+        .light-purple {
+          color: #96A7FF !important;
+        }
+
+        .yellow {
+          color: #FFCF50 !important;
+        }
