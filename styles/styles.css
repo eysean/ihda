@@ -15,7 +15,7 @@
   --background-color: #0069aa;
   --light-color: #f8f8f8;
   --dark-color: #505050;
-  --text-color: #ffffff;
+  --text-color: #fff;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
 
@@ -251,7 +251,7 @@ main > .section:first-of-type {
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
+  background-color: #0c3553;
   margin: 0;
   padding: 40px 0;
 }
