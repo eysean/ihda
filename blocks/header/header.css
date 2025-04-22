@@ -1,27 +1,35 @@
-#header-meta{
-  background-color: #0c3553 !important;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-style: none !important;
-  z-index: 10;
-  min-height: 30px;
-}
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0c3553 !important;
+      padding: 0.75rem 1rem;
+    }
 
-#header-meta .container {
-  min-height: 30px;
-  width: 96%;
-  padding: 0;
-  max-width: 100%;
-  position: relative;
-  margin: 0 auto;
-  clear: both;
-}
+    .navbar a, .navbar span {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
 
-#header-meta a, #top #header-meta li, #top #header-meta .phone-info {
-  color: #5d97c0;
-  border-color: #0c3553;
-  text-transform: none;
-  letter-spacing: 0.01em;
-  font-weight: 600;
-  text-decoration: none !important;
-}
+    .nav-left a {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right span,
+    .nav-right a {
+      margin-left: 1.5rem;
+    }
+
+    /* Social Media Links */
+    .social-links a {
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
