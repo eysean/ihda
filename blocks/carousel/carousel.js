@@ -92,7 +92,20 @@ function createSlide(row, slideIndex, carouselId) {
 
       // Check if a fourth column exists with URL information
       if (rows[3] && rows[3].getElementsByTagName('p')[0]) {
-        const url = rows[3].getElementsByTagName('p')[0].innerHTML.trim();
+        const urlContent = rows[3].getElementsByTagName('p')[0].innerHTML.trim();
+
+        let url = urlContent;
+  
+        // If the content contains an <a> tag, extract the href attribute
+        if (urlContent.includes('<a href="')) {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = urlContent;
+          const anchorElement = tempDiv.querySelector('a');
+          if (anchorElement && anchorElement.href) {
+            url = anchorElement.href;
+          }
+        }
+        
         if (url) {
           // Create a link element
           const link = document.createElement('a');
