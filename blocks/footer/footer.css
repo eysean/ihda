@@ -25,8 +25,3 @@ footer .footer > div {
   font-size: 8px;
 }
 
-footer .footer a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
