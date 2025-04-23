@@ -1,6 +1,7 @@
 
 ul{
     list-style-type:none;
+    padding: 0;
 }
 
 footer .footer > div {
@@ -19,5 +20,7 @@ footer .footer > div {
 }
 
 footer .footer a {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
