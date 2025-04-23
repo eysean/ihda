@@ -82,9 +82,6 @@ function createSlide(row, slideIndex, carouselId) {
   rows.forEach((column, colIdx) => {
     if (colIdx === 0) {
       column.classList.add('carousel-slide-image');
-      if (rows[2]) {
-        column.classList.add(rows[2].getElementsByTagName('p')[0].innerHTML);
-      }
     }
 
     if (colIdx === 1) {
