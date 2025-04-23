@@ -255,3 +255,13 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+.carousel-wrapper {
+  max-width: unset !important;
+  padding-right: unset !important;
+  padding-left: unset !important;
+}
+
+.carousel-container {
+  margin-top: unset !important;
+}

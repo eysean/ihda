@@ -51,7 +51,7 @@
             "label": "Bacgkround Alt"
           },
           {
-            "component": "richtext",
+            "component": "text",
             "name": "content_text",
             "value": "",
             "label": "Title",
