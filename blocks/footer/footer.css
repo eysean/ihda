@@ -13,9 +13,8 @@ footer .footer > div {
   font-size: 12px;
 }
 
-
-footer .footer p {
-  margin: 0;
+footer .footer a {
+  align-items: center;
 }
 
 .nav-left a{
