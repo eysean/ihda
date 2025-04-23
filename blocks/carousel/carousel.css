@@ -73,7 +73,7 @@
 
 .background-yellow > h2,
 .background-yellow > p {
-  background-color: yellow !important;
+  background-color: #e38e25 !important;
 }
 
 .background-lightblue > h2,
@@ -83,7 +83,7 @@
 
 .background-darkblue > h2,
 .background-darkblue > p {
-  background-color: darkblue;
+  background-color: #07519F;
 }
 
 .carousel .carousel-slide-indicators {
