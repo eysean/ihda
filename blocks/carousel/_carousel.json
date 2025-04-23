@@ -63,6 +63,25 @@
             "value": "",
             "label": "Description",
             "valueType": "string"
+          },
+          {
+            "component": "multiselect",
+            "name": "style",
+            "label": "Style",
+            "options": [
+              {
+                "name": "Light Blue",
+                "value": "lightblue"
+              },
+              {
+                "name": "Dark Blue",
+                "value": "darkblue"
+              },
+              {
+                "name": "Yellow",
+                "value": "yellow"
+              }
+            ]
           }
         ]
       }
