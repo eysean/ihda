@@ -9,7 +9,7 @@ footer .footer > div {
   padding: 40px 24px 24px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
 footer .footer p {
