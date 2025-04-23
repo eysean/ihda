@@ -82,17 +82,22 @@ function createSlide(row, slideIndex, carouselId) {
   rows.forEach((column, colIdx) => {
     if (colIdx === 0) {
       column.classList.add('carousel-slide-image');
-    }
-
-    if (colIdx === 1) {
-      column.classList.add('carousel-slide-content');
-
       if (rows[2]) {
         column.classList.add(rows[2].getElementsByTagName('p')[0].innerHTML);
       }
     }
 
-    slide.append(column);
+    if (colIdx === 1) {
+      column.classList.add('carousel-slide-content');
+      if (rows[2]) {
+        column.classList.add(rows[2].getElementsByTagName('p')[0].innerHTML);
+      }
+    }
+
+    // only add first 2 columns to slide
+    if (colIdx < 2) {
+      slide.append(column);
+    }
   });
 
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
