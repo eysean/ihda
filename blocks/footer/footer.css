@@ -2,6 +2,10 @@ footer {
   font-size: var(--body-font-size-xs);
 }
 
+ul{
+    list-style-type:none;
+}
+
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
