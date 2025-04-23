@@ -81,6 +81,11 @@
   background-color: #399ac0;
 }
 
+.background-mediumblue > h2,
+.background-mediumblue > p {
+  background-color: #357cbd;
+}
+
 .background-darkblue > h2,
 .background-darkblue > p {
   background-color: #07519F;

@@ -74,6 +74,10 @@
                 "value": "background-lightblue"
               },
               {
+                "name": "Medium Blue",
+                "value": "background-mediumblue"
+              },
+              {
                 "name": "Dark Blue",
                 "value": "background-darkblue"
               },
