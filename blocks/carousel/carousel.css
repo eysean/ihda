@@ -78,11 +78,13 @@
 
 	.background-yellow>h2,
 	.background-yellow>p {
-		background-color: #e38e25 !important;
+		background-color: #e38e25;
 	}
 
 	.background-lightblue>h2,
-	.background-lightblue>p {
+	.background-lightblue>p,
+  .background-lightblue>*>h2,
+	.background-lightblue>*>p {
 		background-color: #399ac0;
 	}
 
