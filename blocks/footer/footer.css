@@ -12,6 +12,10 @@ footer .footer > div {
   align-items: start;
 }
 
+.footer > a{
+  align-items: center;
+}
+
 footer .footer p {
   margin: 0;
 }
