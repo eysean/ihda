@@ -14,6 +14,8 @@ footer .footer > div {
 }
 
 footer .footer a {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
