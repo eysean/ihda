@@ -198,15 +198,15 @@
         "options": [
           {
             "name": "Light Blue",
-            "value": "lightblue"
+            "value": "background-lightblue"
           },
           {
             "name": "Dark Blue",
-            "value": "darkblue"
+            "value": "brackground-darkblue"
           },
           {
             "name": "Yellow",
-            "value": "yellow"
+            "value": "background-yellow"
           }
         ]
       }
