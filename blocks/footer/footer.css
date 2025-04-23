@@ -21,3 +21,9 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+
+.footer-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
