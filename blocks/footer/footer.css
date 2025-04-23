@@ -6,6 +6,10 @@ ul{
     list-style-type:none;
 }
 
+.footer-main {
+      float:left;
+    }
+
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
