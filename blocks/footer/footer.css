@@ -4,6 +4,12 @@ ul{
     padding: 0;
 }
 
+.container{
+    display: grid;
+    align-items: center;
+    column-gap: 5px;
+}
+
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
