@@ -86,6 +86,13 @@
                 "value": "background-yellow"
               }
             ]
+          },
+          {
+            "component": "text",
+            "name": "link_url",
+            "value": "",
+            "label": "URL",
+            "valueType": "string"
           }
         ]
       }

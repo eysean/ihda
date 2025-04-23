@@ -89,6 +89,24 @@ function createSlide(row, slideIndex, carouselId) {
       if (rows[2]) {
         column.classList.add(rows[2].getElementsByTagName('p')[0].innerHTML);
       }
+
+      // Check if a fourth column exists with URL information
+      if (rows[3] && rows[3].getElementsByTagName('p')[0]) {
+        const url = rows[3].getElementsByTagName('p')[0].innerHTML.trim();
+        if (url) {
+          // Create a link element
+          const link = document.createElement('a');
+          link.href = url;
+
+          // Move the content inside the link
+          while (column.firstChild) {
+            link.appendChild(column.firstChild);
+          }
+
+          // Add the link to the column
+          column.appendChild(link);
+        }
+      }
     }
 
     // only add first 2 columns to slide
