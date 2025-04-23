@@ -10,6 +10,7 @@ footer .footer > div {
   display: flex;
   justify-content: space-between;
   align-items: start;
+  font-size: 12px;
 }
 
 
@@ -23,6 +24,7 @@ footer .footer p {
   }
 }
 
-footer .navbar{
+.navbar{
     color: #62b0e7;
+    font-size: 8px;
 }
