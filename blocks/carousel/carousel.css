@@ -61,27 +61,28 @@
 }
 
 .carousel-slide-content h2 {
-  background-color: #399ac0;
   opacity: 0.9;
   padding: 24px;
   margin-bottom: 40px;
 }
 
 .carousel-slide-content p {
-  background-color: #399ac0;
   opacity: 0.9;
   padding: 24px;
 }
 
-.carousel-slide-content .background-yellow {
-  background-color: yellow;
+.background-yellow > h2,
+.background-yellow > p {
+  background-color: yellow !important;
 }
 
-.carousel-slide-content .background-lightblue {
+.background-lightblue > h2,
+.background-lightblue > p {
   background-color: #399ac0;
 }
 
-.carousel-slide-content .background-darkblue {
+.background-darkblue > h2,
+.background-darkblue > p {
   background-color: darkblue;
 }
 
