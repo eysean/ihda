@@ -77,7 +77,9 @@
 	}
 
 	.background-yellow>h2,
-	.background-yellow>p {
+	.background-yellow>p,
+  .background-yellow>*>h2,
+	.background-yellow>*>p  {
 		background-color: #e38e25;
 	}
 
@@ -89,12 +91,16 @@
 	}
 
 	.background-mediumblue>h2,
-	.background-mediumblue>p {
+	.background-mediumblue>p,
+  .background-mediumblue>*>h2,
+	.background-mediumblue>*>p  {
 		background-color: #357cbd;
 	}
 
 	.background-darkblue>h2,
-	.background-darkblue>p {
+	.background-darkblue>p,
+  .background-darkblue>*>h2,
+	.background-darkblue>*>p {
 		background-color: #07519F;
 	}
 
