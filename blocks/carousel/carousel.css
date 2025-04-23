@@ -76,6 +76,12 @@
 		padding: 24px;
 	}
 
+  .carousel-slide-content a,
+  .carousel-slide-content a:hover {
+    text-decoration: none;
+    color:#fff;
+  }
+
 	.background-yellow>h2,
 	.background-yellow>p,
   .background-yellow>*>h2,
