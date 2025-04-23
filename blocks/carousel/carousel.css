@@ -73,6 +73,18 @@
   padding: 24px;
 }
 
+.carousel-slide-content .background-yellow {
+  background-color: yellow;
+}
+
+.carousel-slide-content .background-lightblue {
+  background-color: #399ac0;
+}
+
+.carousel-slide-content .background-darkblue {
+  background-color: darkblue;
+}
+
 .carousel .carousel-slide-indicators {
   display: flex;
   flex-wrap: wrap;

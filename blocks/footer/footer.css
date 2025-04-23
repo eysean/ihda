@@ -13,11 +13,11 @@ footer .footer > div {
   font-size: 12px;
 }
 
-footer .footer a {
-  align-items: center;
+.nav-left-foot a{
+  color: #62b0e7;
+  font-size: 8px;
 }
 
-.nav-left-foot a{
-    color: #62b0e7;
-    font-size: 8px;
+footer .footer a {
+  align-items: center;
 }
