@@ -2,7 +2,8 @@
   "mappings": [
     "/content/ihda/:/",
     "/content/ihda/configuration:/.helix/config.json",
-    "/content/ihda/metadata:/metadata.json"
+    "/content/ihda/metadata:/metadata.json",
+    "/content/ihda/faq:/faq.json"
   ],
   "includes": [
     "/content/ihda/"
