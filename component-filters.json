@@ -18,7 +18,8 @@
       "fragment",
       "carousel",
       "htmlblock",
-      "quote"
+      "quote",
+      "faq"
     ]
   },
   {
@@ -45,7 +46,8 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "faq"
     ]
   }
 ]
