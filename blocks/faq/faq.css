@@ -1,5 +1,4 @@
 .faq-topics {
-    margin: 2rem 0;
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
@@ -23,14 +22,14 @@
     font-weight: 600;
     transition: all 0.2s ease;
     height: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
   }
   
   .faq-topic-link:hover,
   .faq-topic-link:focus {
     background-color: #e0e0e0;
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
   }
   
   .error-message {
@@ -48,7 +47,7 @@
     font-style: italic;
   }
   
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     .faq-topics-list {
       grid-template-columns: 1fr;
     }
