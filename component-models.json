@@ -243,13 +243,13 @@
     ]
   },
   {
-    "id": "faq-topics",
+    "id": "faq",
     "fields": [
       {
         "component": "text",
         "valueType": "string",
         "name": "data_source",
-        "value": "/content/dam/faq/spreadsheet",
+        "value": "https://author-p7906-e91558.adobeaemcloud.com/content/ihda/faq.hlx.json",
         "label": "Data Source Path"
       },
       {
