@@ -19,7 +19,7 @@
       "carousel",
       "htmlblock",
       "quote",
-      "faq"
+      "faqs"
     ]
   },
   {
@@ -47,13 +47,13 @@
       "image",
       "button",
       "title",
-      "faq"
+      "faqs"
     ]
   },
   {
-    "id": "faq",
+    "id": "faqs",
     "components": [
-      "faq"
+      "faqs"
     ]
   }
 ]

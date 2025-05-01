@@ -243,7 +243,7 @@
     ]
   },
   {
-    "id": "faq",
+    "id": "faqs",
     "fields": [
       {
         "component": "text",
