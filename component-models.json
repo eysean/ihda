@@ -243,6 +243,32 @@
     ]
   },
   {
+    "id": "faq-topics",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "data_source",
+        "value": "/content/dam/faq/spreadsheet",
+        "label": "Data Source Path"
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "display_columns",
+        "value": 3,
+        "label": "Display Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "section_title",
+        "value": "FAQs",
+        "label": "Section Title"
+      }
+    ]
+  },
+  {
     "id": "fragment",
     "fields": [
       {
