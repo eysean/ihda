@@ -1,25 +1,53 @@
+.faqs-container {
+  background-color: #0b3654;
+} 
+
 .faq-topics {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
   }
+
+  .toggle-text {
+    background-color: #176ba6 !important;
+    color: #0b3553;
+  }
+
+  .toggle-element {
+    display: flex;
+    margin: 0 auto;
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #176ba6 !important;
+    transition: background-color 0.3s ease;
+  }
   
   .faq-topics-list {
     list-style: none;
     padding: 0;
-    display: grid;
+    margin-top: 0;
+    flex-direction: column;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+  }
+
+  .toggle-element.active {
+    color: #fff !important;
   }
   
+  .toggle-element.active .toggle-text {
+    color: #fff !important;
+  }
+
   .faq-topic-link {
     display: block;
-    padding: 1.5rem;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    color: #333;
+    padding-left: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background-color: #a2b0bd;
+    color: #10456e !important;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: normal;
     transition: all 0.2s ease;
     height: 100%;
     box-shadow: 0 2px 5px rgb(0 0 0 / 10%);
@@ -43,7 +71,6 @@
   .no-topics-message {
     text-align: center;
     padding: 2rem;
-    color: #666;
     font-style: italic;
   }
   
@@ -52,4 +79,5 @@
       grid-template-columns: 1fr;
     }
   }
+
   

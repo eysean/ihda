@@ -249,14 +249,14 @@
         "component": "text",
         "valueType": "string",
         "name": "data_source",
-        "value": "https://author-p7906-e91558.adobeaemcloud.com/content/ihda/faq.hlx.json",
+        "value": "/faq",
         "label": "Data Source Path"
       },
       {
         "component": "number",
         "valueType": "number",
         "name": "display_columns",
-        "value": 3,
+        "value": 1,
         "label": "Display Columns"
       },
       {
