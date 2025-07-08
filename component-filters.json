@@ -53,7 +53,9 @@
   {
     "id": "faqs",
     "components": [
-      "faqs"
+      "faqs",
+      "text",
+      "title"
     ]
   }
 ]
