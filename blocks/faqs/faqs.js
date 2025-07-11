@@ -28,7 +28,7 @@ const createErrorUI = (error) => {
   const errorContainer = document.createElement('div');
   errorContainer.className = 'error-message';
   const heading = document.createElement('div');
-  heading.textContent = 'Error loading FAQ topics';
+  heading.textContent = 'Error loading data';
   errorContainer.appendChild(heading);
 
   const details = document.createElement('div');
