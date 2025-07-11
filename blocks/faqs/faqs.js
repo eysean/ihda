@@ -7,9 +7,10 @@ import {
  * Create Alpine component configuration
  * @returns {object} Alpine component configuration
  */
-const createFaqTopicsConfig = () => ({
+const createFaqTopicsConfig = (label) => ({
   topics: [],
   isOpen: false,
+  label,
   init() {
     this.topics = window.faqTopicsData || [];
   },
@@ -21,31 +22,19 @@ const createFaqTopicsConfig = () => ({
 /**
  * Creates and returns an error container element
  * @param {Error} error The error that occurred
- * @returns {Promise<HTMLElement>} The error container element
+ * @returns {HTMLElement} The error container element
  */
-const createErrorUI = async (error) => {
-  // Load the error template
-  const templatePath = new URL('../../error/error-template.html', import.meta.url).pathname;
-  const response = await fetch(templatePath);
-
-  if (!response.ok) {
-    throw new Error(`Failed to load error template: ${response.status}`);
-  }
-
-  let template = await response.text();
-
-  // Replace the placeholder with the actual error message
-  template = template.replace('{{errorMessage}}', error.message);
-
-  // Create the container and set its content
+const createErrorUI = (error) => {
   const errorContainer = document.createElement('div');
   errorContainer.className = 'error-message';
-  errorContainer.innerHTML = template;
+  const heading = document.createElement('div');
+  heading.textContent = 'Error loading FAQ topics';
+  errorContainer.appendChild(heading);
 
-  // Add click handler for retry button
-  errorContainer.querySelector('.error-retry-button').addEventListener('click', () => {
-    window.location.reload();
-  });
+  const details = document.createElement('div');
+  details.className = 'error-details';
+  details.textContent = error.message;
+  errorContainer.appendChild(details);
 
   return errorContainer;
 };
@@ -56,7 +45,7 @@ const createErrorUI = async (error) => {
 * @param {HTMLElement} container The container element to append
 * @returns {HTMLElement} new block container element
 */
-const replaceBlockContent = (block, container) => {
+const appendBlockContent = (block, container) => {
   const newBlock = block.cloneNode(false);
   newBlock.appendChild(container);
   block.replaceWith(newBlock);
@@ -70,62 +59,62 @@ const replaceBlockContent = (block, container) => {
  * @returns {Promise<void>} Resolves when the block is decorated
  */
 export default async function decorate(block) {
-  const dataSource = block.dataset.source || '/faq';
-  const templatePath = new URL('faq-template.html', import.meta.url).pathname;
+  // Read authored block content
+  const label = block.children[2]?.textContent?.trim() || '';
+
+  // Get data source from block content
+  const dataSource = block.children[0]?.textContent?.trim() || '';
+
+  // Fix the typo in template path
+  const templatePath = new URL('faq-templat.html', import.meta.url).pathname;
 
   // Register component with shared loader
-  registerAlpineComponent('faqTopics', createFaqTopicsConfig);
+  registerAlpineComponent('faqTopics', () => createFaqTopicsConfig(label));
 
   try {
-    // Load data
-    const dataResponse = await fetch(`${dataSource}.json`);
+    // Load data and template in parallel
+    const [dataResponse, templateResponse] = await Promise.all([
+      fetch(`${dataSource}.json`),
+      fetch(templatePath),
+    ]);
+
+    // Check responses
     if (!dataResponse.ok) {
       throw new Error(`Failed to load data: ${dataResponse.status} ${dataResponse.statusText}`);
     }
-    // Load template
-    const templateResponse = await fetch(templatePath);
+
     if (!templateResponse.ok) {
       throw new Error(`Failed to load template: ${templateResponse.status} ${templateResponse.statusText}`);
     }
 
-    // Parse response
-    let data;
-    try {
-      data = await dataResponse.json();
-    } catch (parseError) {
-      throw new Error(`Invalid JSON in data response: ${parseError.message}`);
-    }
-
+    // Parse responses
+    const data = await dataResponse.json();
     const template = await templateResponse.text();
 
-    // Validate data structure
+    // Validate data
     if (!data || !data.data) {
       throw new Error('Data response missing required "data" property');
     }
 
     // Store data for Alpine component
-    window.faqTopicsData = data.data || [];
+    window.faqTopicsData = data.data;
 
-    // Create container
+    // Create container with template content
     const container = document.createElement('div');
-
-    // Use template element to safely parse HTML
     const templateEl = document.createElement('template');
-    templateEl.innerHTML = template; // Risk limited to template element
-
-    // Use append instead of innerHTML for container
+    templateEl.innerHTML = template;
     container.append(...templateEl.content.childNodes);
 
-    // Mark the container for lazy loading
+    // Mark for lazy loading
     markForLazyLoad(container, 'faqTopics');
 
-    replaceBlockContent(block, container);
+    return appendBlockContent(block, container);
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Content loading error:', error.message, error.stack);
+    // linter-disable-next-line no-console
+    console.error('FAQ loading error:', error);
 
-    // Create and use error UI
-    const errorContainer = await createErrorUI(error);
-    replaceBlockContent(block, errorContainer);
+    // Create simple error UI (no async, no retry logic)
+    const errorContainer = createErrorUI(error);
+    return appendBlockContent(block, errorContainer);
   }
 }

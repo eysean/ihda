@@ -1,14 +1,15 @@
 <div class="toggle-element" 
-     :class="{ 'active': isOpen }" 
-     @click="toggleOpen()" 
-     aria-expanded="false" 
-     :aria-expanded="isOpen" 
-     :aria-label="isOpen ? 'Click to collapse: SELECT A TOPIC BELOW' : 'Click to expand: SELECT A TOPIC BELOW'">
+  :class="{ 'active': isOpen }" 
+  @click="toggleOpen()" 
+  aria-expanded="false"
+  :aria-expanded="isOpen" 
+  :aria-label="`Click to ${isOpen ? 'collapse' : 'expand'}: ${label}`"
+>
   <div class="toggle-icon">
     <span class="vert_icon"></span>
     <span class="hor_icon" x-show="!isOpen"></span>
   </div>
-  <div class="toggle-text">SELECT A TOPIC BELOW</div>
+  <div class="toggle-text" x-text="label"></div>
 </div>
 
 <ul class="faq-topics-list" x-show="isOpen" x-transition.opacity>
@@ -17,7 +18,5 @@
       <a :href="item.value" class="faq-topic-link" x-text="item.key"></a>
     </li>
   </template>
-  <li x-show="topics.length === 0" class="no-topics-message">No FAQ topics available.</li>
+  <li x-show="topics.length === 0" class="no-topics-message">No topics available.</li>
 </ul>
-
-<div x-show="topics.length === 0" class="no-topics-message">No FAQ topics available.</div>
