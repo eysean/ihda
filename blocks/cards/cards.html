@@ -1,0 +1,8 @@
+<ul class="cards" role="list">
+  <template x-for="(card, index) in cards" :key="index">
+    <li class="cards-card" role="listitem">
+      <div class="cards-card-image" x-html="card.image"></div>
+      <div class="cards-card-body" x-html="card.body"></div>
+    </li>
+  </template>
+</ul>

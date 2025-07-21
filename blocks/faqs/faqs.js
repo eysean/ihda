@@ -2,6 +2,10 @@ import {
   registerAlpineComponent,
   markForLazyLoad,
 } from '../../scripts/alpine-loader.js';
+import {
+  appendBlockContent,
+  createErrorUI,
+} from '../../scripts/block-utils.js';
 
 /**
  * Create Alpine component configuration
@@ -20,40 +24,6 @@ const createFaqTopicsConfig = (label) => ({
 });
 
 /**
- * Creates and returns an error container element
- * @param {Error} error The error that occurred
- * @returns {HTMLElement} The error container element
- */
-const createErrorUI = (error) => {
-  const errorContainer = document.createElement('div');
-  errorContainer.className = 'error-message';
-  const heading = document.createElement('div');
-  heading.textContent = 'Error loading data';
-  errorContainer.appendChild(heading);
-
-  const details = document.createElement('div');
-  details.className = 'error-details';
-  details.textContent = error.message;
-  errorContainer.appendChild(details);
-
-  return errorContainer;
-};
-
-/**
-* Creates and returns a block container element
-* @param {HTMLElement} block Content block element
-* @param {HTMLElement} container The container element to append
-* @returns {HTMLElement} new block container element
-*/
-const appendBlockContent = (block, container) => {
-  const newBlock = block.cloneNode(false);
-  newBlock.appendChild(container);
-  block.replaceWith(newBlock);
-
-  return newBlock;
-};
-
-/**
  * Main component function
  * @param {HTMLElement} block The block element
  * @returns {Promise<void>} Resolves when the block is decorated
@@ -66,7 +36,7 @@ export default async function decorate(block) {
   const dataSource = block.children[0]?.textContent?.trim() || '';
 
   // Fix the typo in template path
-  const templatePath = new URL('faq-templat.html', import.meta.url).pathname;
+  const templatePath = new URL('faq-template.html', import.meta.url).pathname;
 
   // Register component with shared loader
   registerAlpineComponent('faqTopics', () => createFaqTopicsConfig(label));
