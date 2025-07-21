@@ -1,95 +1,63 @@
-import {
-  registerAlpineComponent,
-  markForLazyLoad,
-} from '../../scripts/alpine-loader.js';
-import {
-  appendBlockContent,
-  createErrorUI,
-} from '../../scripts/block-utils.js';
-
 /**
- * Create Alpine component configuration
- * @returns {object} Alpine component configuration
+ * Loads data from AEM Edge Data Services
+ * @param {string} path The path to the data source
+ * @returns {object} The data
  */
-const createFaqTopicsConfig = (label) => ({
-  topics: [],
-  isOpen: false,
-  label,
-  init() {
-    this.topics = window.faqTopicsData || [];
-  },
-  toggleOpen() {
-    this.isOpen = !this.isOpen;
-  },
-});
+async function loadData(path) {
+  const resp = await fetch(`${path}.json`);
+  if (!resp.ok) {
+    throw new Error(`Failed to load data from ${path}`);
+  }
+  return resp.json();
+}
 
 /**
- * Main component function
- * @param {HTMLElement} block The block element
- * @returns {Promise<void>} Resolves when the block is decorated
+ * decorates the block
+ * @param {Element} block The block element
  */
 export default async function decorate(block) {
-  // Read authored block content
-  const label = block.children[2]?.textContent?.trim() || '';
-
-  // Get data source from block content
-  const dataSource = block.children[0]?.textContent?.trim() || '';
-
-  // Fix the typo in template path
-  const templatePath = new URL('faq-template.html', import.meta.url).pathname;
-
-  // Register component with shared loader
-  registerAlpineComponent('faqTopics', () => createFaqTopicsConfig(label));
-
-  // linter-disable-next-line no-console
-  console.log('Base URL:', import.meta?.url);
-  // linter-disable-next-line no-console
-  console.log('Template name:', templatePath);
+  // Get the data source path from the block's data attribute or use a default
+  const dataSource = block.dataset.source || '/content/dam/faq-topics/spreadsheet';
 
   try {
-    // Load data and template in parallel
-    const [dataResponse, templateResponse] = await Promise.all([
-      fetch(`${dataSource}.json`),
-      fetch(templatePath),
-    ]);
+    // Load the data from AEM Edge Data Services
+    const data = await loadData(dataSource);
 
-    // Check responses
-    if (!dataResponse.ok) {
-      throw new Error(`Failed to load data: ${dataResponse.status} ${dataResponse.statusText}`);
+    // Clear the existing content
+    block.textContent = '';
+
+    // Create the FAQ topics list
+    const topicsList = document.createElement('ul');
+    topicsList.className = 'faq-topics-list';
+
+    // Process the data rows from the spreadsheet
+    // Assuming data structure has an items array with objects containing linktext and url
+    if (data && data.data && Array.isArray(data.data.items)) {
+      data.data.items.forEach((item) => {
+        if (item.linktext && item.url) {
+          const listItem = document.createElement('li');
+          const link = document.createElement('a');
+
+          link.href = item.url;
+          link.textContent = item.linktext;
+          link.className = 'faq-topic-link';
+
+          listItem.appendChild(link);
+          topicsList.appendChild(listItem);
+        }
+      });
     }
 
-    if (!templateResponse.ok) {
-      throw new Error(`Failed to load template: ${templateResponse.status} ${templateResponse.statusText}`);
+    block.appendChild(topicsList);
+
+    // Display a message if no topics were found
+    if (topicsList.children.length === 0) {
+      const noTopics = document.createElement('div');
+      noTopics.className = 'no-topics-message';
+      noTopics.textContent = 'No FAQ topics available.';
+      block.appendChild(noTopics);
     }
-
-    // Parse responses
-    const data = await dataResponse.json();
-    const template = await templateResponse.text();
-
-    // Validate data
-    if (!data || !data.data) {
-      throw new Error('Data response missing required "data" property');
-    }
-
-    // Store data for Alpine component
-    window.faqTopicsData = data.data;
-
-    // Create container with template content
-    const container = document.createElement('div');
-    const templateEl = document.createElement('template');
-    templateEl.innerHTML = template;
-    container.append(...templateEl.content.childNodes);
-
-    // Mark for lazy loading
-    markForLazyLoad(container, 'faqTopics');
-
-    return appendBlockContent(block, container);
   } catch (error) {
-    // linter-disable-next-line no-console
-    console.error('FAQ loading error:', error);
-
-    // Create simple error UI (no async, no retry logic)
-    const errorContainer = createErrorUI(error);
-    return appendBlockContent(block, errorContainer);
+    block.innerHTML = '<div class="error-message">Error loading FAQ topics</div>';
   }
 }
