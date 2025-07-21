@@ -33,9 +33,9 @@ export default async function decorate(block) {
 
     // Process the data rows from the spreadsheet
     // Assuming data structure has an items array with objects containing linktext and url
-    if (data && data.data && Array.isArray(data.data.items)) {
-      data.data.items.forEach((item) => {
-        if (item.linktext && item.url) {
+    if (data && data.data && Array.isArray(data.data)) {
+      data.data.forEach((item) => {
+        if (item.key && item.value) {
           const listItem = document.createElement('li');
           const link = document.createElement('a');
 
