@@ -41,6 +41,11 @@ export default async function decorate(block) {
   // Register component with shared loader
   registerAlpineComponent('faqTopics', () => createFaqTopicsConfig(label));
 
+  // linter-disable-next-line no-console
+  console.log('Base URL:', import.meta?.url);
+  // linter-disable-next-line no-console
+  console.log('Template name:', templatePath);
+
   try {
     // Load data and template in parallel
     const [dataResponse, templateResponse] = await Promise.all([
