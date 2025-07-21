@@ -17,7 +17,8 @@ async function loadData(path) {
  */
 export default async function decorate(block) {
   // Get the data source path from the block's data attribute or use a default
-  const dataSource = block.dataset.source || '/content/dam/faq-topics/spreadsheet';
+  // const dataSource = block.dataset.source || '/content/dam/faq-topics/spreadsheet';
+  const dataSource = block.children[0]?.textContent?.trim() || '';
 
   try {
     // Load the data from AEM Edge Data Services
