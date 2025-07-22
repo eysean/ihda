@@ -9,15 +9,8 @@ import {
 } from '../../scripts/block-utils.js';
 import { IMAGE_WIDTHS } from '../../scripts/constants.js';
 
-/**
- * Main block function
- * @param {HTMLElement} block The block element
- * @returns {Promise<HTMLElement>} The decorated block
- */
-export default async function decorate(block) {
-  // Generate a unique ID for the block
-  const blockId = `cards${Math.random().toString(36).substring(2, 10)}`;
-
+// Helper function to extract data without modifying the DOM
+function extractCardsData(block) {
   // Process cards data
   const cardsData = [];
   [...block.children].forEach((row) => {
@@ -49,34 +42,57 @@ export default async function decorate(block) {
 
     cardsData.push(card);
   });
+  return cardsData;
+}
 
-  // Create unique component name for use with Alpine.js
-  // Allows multiple instances of the component on
-  // the same page without conflicts
-  const componentName = `cardsComponent${blockId}`;
+/**
+ * Main block function
+ * @param {HTMLElement} block The block element
+ * @returns {Promise<HTMLElement>} The decorated block
+ */
+export default async function decorate(block) {
+  // Process data from the original block
+  const cardsData = extractCardsData(block);
 
+  // Create unique component name
+  const componentName = `cardsComponent${Math.random().toString(36).substring(2, 10)}`;
+
+  // Register Alpine component
   registerAlpineComponent(componentName, () => ({
     cards: cardsData,
   }));
 
-  // Get template path
+  // Add an attribute to the block to mark it as processed
+  // This preserves all original UE attributes
+  block.setAttribute('data-cards-processed', 'true');
+
+  // Create a container for the template content
+  const container = document.createElement('div');
+  container.className = 'cards-rendered-content';
+  container.setAttribute('x-data', componentName);
+
+  // Load and set template
   const templatePath = getTemplatePath('cards.html', import.meta);
-
-  // Load template content
   const templateResponse = await fetch(templatePath);
-  const templateHTML = await templateResponse.text();
+  container.innerHTML = await templateResponse.text();
 
-  // Clear the original block content
-  block.innerHTML = '';
+  // Hide original content rather than removing it
+  // This preserves the original DOM structure for UE
+  const originalContent = document.createElement('div');
+  originalContent.className = 'cards-original-content';
+  originalContent.style.display = 'none';
 
-  // Add Alpine data binding directly to the block
-  block.setAttribute('x-data', componentName);
+  // Move original children to the hidden container
+  while (block.firstChild) {
+    originalContent.appendChild(block.firstChild);
+  }
 
-  // Insert template HTML into the block
-  block.innerHTML = templateHTML;
+  // Add both containers to the block
+  block.appendChild(originalContent); // Hidden original content
+  block.appendChild(container); // Visible rendered content
 
   // Mark for lazy loading
-  markForLazyLoad(block, componentName);
+  markForLazyLoad(container, componentName);
 
   return block;
 }
