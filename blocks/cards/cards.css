@@ -1,4 +1,5 @@
-.cards > ul {
+.cards > ul,
+.cards > * > ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -7,20 +8,24 @@
   grid-gap: 24px;
 }
 
-.cards > ul > li {
+.cards > ul > li,
+.cards > * > ul > li{
   border: 1px solid #dadada;
   background-color: var(--background-color);
 }
 
-.cards .cards-card-body {
+.cards .cards-card-body,
+.cards > * .cards-card-body {
   margin: 16px;
 }
 
-.cards .cards-card-image {
+.cards .cards-card-image,
+.cards > * .cards-card-image {
   line-height: 0;
 }
 
-.cards > ul > li img {
+.cards > ul > li img
+.cards > * > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
