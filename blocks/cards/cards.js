@@ -1,69 +1,24 @@
-import {
-  registerAlpineComponent,
-  markForLazyLoad,
-} from '../../scripts/alpine-loader.js';
-import {
-  appendBlockContent,
-  loadTemplate,
-  getTemplatePath,
-} from '../../scripts/block-utils.js';
-import {
-  parseBlockContent,
-  isImageOnly,
-  getOptimizedImage,
-} from '../../scripts/block-dom-parser.js';
-import { IMAGE_WIDTHS } from '../../scripts/constants.js';
+import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
-/**
- * Create Alpine component configuration for cards
- * @returns {object} Alpine component configuration
- */
-const createCardsConfig = () => ({
-  cards: [],
-  init() {
-    this.cards = window.cardsData || [];
-  },
-});
-
-/**
- * Main block function
- * @param {HTMLElement} block The block element
- * @returns {Promise<HTMLElement>} The decorated block
- */
-export default async function decorate(block) {
-  // Register Alpine component
-  registerAlpineComponent('cards', createCardsConfig);
-
-  // Process cards data using generic parser
-  const cardsData = parseBlockContent(block, {
-    rowParser: (row) => {
-      const card = { image: null, body: null };
-
-      [...row.children].forEach((div) => {
-        if (isImageOnly(div)) {
-          const optimizedPic = getOptimizedImage(div, {
-            width: IMAGE_WIDTHS.DEFAULT,
-          });
-          card.image = optimizedPic.outerHTML;
-        } else {
-          card.body = div.innerHTML;
-        }
-      });
-      return card;
-    },
+export default function decorate(block) {
+  /* change to ul, li */
+  const ul = document.createElement('ul');
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+    moveInstrumentation(row, li);
+    while (row.firstElementChild) li.append(row.firstElementChild);
+    [...li.children].forEach((div) => {
+      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
+      else div.className = 'cards-card-body';
+    });
+    ul.append(li);
   });
-
-  // Store data for Alpine component
-  window.cardsData = cardsData;
-
-  // Get template path
-  const templatePath = getTemplatePath('cards.html', import.meta);
-
-  // Load template and create container
-  const container = await loadTemplate(templatePath);
-
-  // Mark for lazy loading
-  markForLazyLoad(container, 'cards');
-
-  return appendBlockContent(block, container);
+  ul.querySelectorAll('picture > img').forEach((img) => {
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    moveInstrumentation(img, optimizedPic.querySelector('img'));
+    img.closest('picture').replaceWith(optimizedPic);
+  });
+  block.textContent = '';
+  block.append(ul);
 }
