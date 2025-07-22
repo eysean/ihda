@@ -8,38 +8,18 @@ import {
 } from '../../scripts/block-utils.js';
 
 /**
- * Create Alpine component configuration
- * @returns {object} Alpine component configuration
- */
-const createFaqTopicsConfig = (label) => ({
-  topics: [],
-  isOpen: false,
-  label,
-  init() {
-    this.topics = window.faqTopicsData || [];
-  },
-  toggleOpen() {
-    this.isOpen = !this.isOpen;
-  },
-});
-
-/**
  * Main component function
  * @param {HTMLElement} block The block element
  * @returns {Promise<void>} Resolves when the block is decorated
  */
 export default async function decorate(block) {
+  // Generate a unique ID for the block
+  const blockId = `faq${Math.random().toString(36).substring(2, 10)}`;
+
   // Read authored block content
   const label = block.children[2]?.textContent?.trim() || '';
-
-  // Get data source from block content
   const dataSource = block.children[0]?.textContent?.trim() || '';
-
-  // Fix the typo in template path
   const templatePath = new URL('faq-template.html', import.meta.url).pathname;
-
-  // Register component with shared loader
-  registerAlpineComponent('faqTopics', () => createFaqTopicsConfig(label));
 
   try {
     // Load data and template in parallel
@@ -66,24 +46,40 @@ export default async function decorate(block) {
       throw new Error('Data response missing required "data" property');
     }
 
-    // Store data for Alpine component
-    window.faqTopicsData = data.data;
+    // Get topics data
+    const topicsData = data.data;
+
+    // Create unique component name for use with Alpine.js
+    // This allows multiple instances of the component on
+    // the same page without conflicts
+    const componentName = `faqTopics${blockId}`;
+
+    // Register the component with a factory method
+    // and encapsulated variables and data
+    // label, shorthand for label: label,
+    registerAlpineComponent(componentName, () => ({
+      topics: topicsData,
+      isOpen: false,
+      label,
+      toggleOpen() {
+        this.isOpen = !this.isOpen;
+      },
+    }));
 
     // Create container with template content
     const container = document.createElement('div');
     const templateEl = document.createElement('template');
     templateEl.innerHTML = template;
+
+    // Move all template content into the container
     container.append(...templateEl.content.childNodes);
 
-    // Mark for lazy loading
-    markForLazyLoad(container, 'faqTopics');
+    // Mark for lazy loading with unique component name
+    markForLazyLoad(container, componentName);
 
     return appendBlockContent(block, container);
   } catch (error) {
-    // linter-disable-next-line no-console
     console.error('FAQ loading error:', error);
-
-    // Create simple error UI (no async, no retry logic)
     const errorContainer = createErrorUI(error);
     return appendBlockContent(block, errorContainer);
   }
