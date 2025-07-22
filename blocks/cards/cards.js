@@ -5,8 +5,6 @@ import {
   markForLazyLoad,
 } from '../../scripts/alpine-loader.js';
 import {
-  appendBlockContent,
-  loadTemplate,
   getTemplatePath,
 } from '../../scripts/block-utils.js';
 import { IMAGE_WIDTHS } from '../../scripts/constants.js';
@@ -64,11 +62,21 @@ export default async function decorate(block) {
   // Get template path
   const templatePath = getTemplatePath('cards.html', import.meta);
 
-  // Load template and create container
-  const container = await loadTemplate(templatePath);
+  // Load template content
+  const templateResponse = await fetch(templatePath);
+  const templateHTML = await templateResponse.text();
+
+  // Clear the original block content
+  block.innerHTML = '';
+
+  // Add Alpine data binding directly to the block
+  block.setAttribute('x-data', componentName);
+
+  // Insert template HTML into the block
+  block.innerHTML = templateHTML;
 
   // Mark for lazy loading
-  markForLazyLoad(container, componentName);
+  markForLazyLoad(block, componentName);
 
-  return appendBlockContent(block, container);
+  return block;
 }
