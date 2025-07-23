@@ -50,8 +50,7 @@ export function parseBlockContent(block, options = {}) {
  */
 export function isImageOnly(element) {
   return element.children.length === 1
-    && (element.querySelector('picture')
-        || element.querySelector('img'));
+    && (element.querySelector('picture'));
 }
 
 /**
