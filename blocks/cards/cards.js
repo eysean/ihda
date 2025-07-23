@@ -12,7 +12,11 @@ import {
 } from '../../scripts/block-dom-parser.js';
 import { IMAGE_WIDTHS } from '../../scripts/constants.js';
 
-// Helper function to extract data without modifying the DOM
+/**
+ * Helper function to extract data without modifying the DOM
+ * @param {HTMLElement} block The block element
+ * @returns {Array<Object>} Array of card objects
+ */
 const extractCardsData = (block) => {
   // Process cards data
   const cardsData = parseBlockContent(block, {
