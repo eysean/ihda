@@ -56,8 +56,14 @@ export default async function decorate(block) {
   // and preserve all original UE attributes
   block.setAttribute('data-cards-processed', 'true');
 
-  // Create a container for the template content
-  const container = document.createElement('div');
+  // Create and cache DOM elements for
+  // original and template content
+  const [originalContent, container] = [
+    document.createElement('div'),
+    document.createElement('div'),
+  ];
+
+  // Container for the template content
   container.className = 'cards-rendered-content';
   container.setAttribute('x-data', componentName);
 
@@ -68,7 +74,6 @@ export default async function decorate(block) {
 
   // Hide original content rather than removing
   // to preserve the original DOM structure for UE
-  const originalContent = document.createElement('div');
   originalContent.className = 'cards-original-content';
   originalContent.style.display = 'none';
 
@@ -78,11 +83,16 @@ export default async function decorate(block) {
   }
 
   // Add both containers to the block
-  block.appendChild(originalContent); // Hidden original content
-  block.appendChild(container); // Visible rendered content
+  // via batched DOM manipulation
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(originalContent);
+  fragment.appendChild(container);
+  block.appendChild(fragment);
 
   // Mark for lazy loading
-  markForLazyLoad(container, componentName);
+  requestAnimationFrame(() => {
+    markForLazyLoad(container, componentName);
+  });
 
   return block;
 }
