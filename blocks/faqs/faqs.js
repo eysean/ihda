@@ -79,6 +79,7 @@ export default async function decorate(block) {
 
     return appendBlockContent(block, container);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('FAQ loading error:', error);
     const errorContainer = createErrorUI(error);
     return appendBlockContent(block, errorContainer);

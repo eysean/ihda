@@ -17,8 +17,9 @@ export function loadAlpineImmediate() {
 
       // Create script element to hold Alpine.js
       const script = document.createElement('script');
-      // TODO: change to self hosted version
-      script.src = 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js';
+      // Use import.meta.url to get the correct path relative to current script
+      const alpineUrl = new URL('./alpine.min.js', import.meta.url).href;
+      script.src = alpineUrl;
       script.defer = true;
 
       // Resolve promise when script loads
